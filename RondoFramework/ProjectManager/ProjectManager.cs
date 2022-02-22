@@ -85,6 +85,8 @@ namespace RondoFramework.ProjectManager {
 
 			Type projectType = Type.GetType(projectData.ProjectClassType);
 			IProject project = Activator.CreateInstance(projectType) as IProject;
+			project.ProjectPath = Path.GetDirectoryName(path);
+			project.ProjectName = projectData.AppName;
 
 			foreach (KeyValuePair<string, string> pair in projectData.Modules) {
 				string typeString = projectData.ModuleTypes[pair.Key];
